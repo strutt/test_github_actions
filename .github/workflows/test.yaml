@@ -8,5 +8,12 @@ jobs:
     - name: Checkout Scripts
       uses: actions/checkout@v2
 
-    - name: Email address of most recent user
-      run: git log -1 --pretty=format:'%ae'
+    - name:
+      run: |
+        export USERNAME=$(git log -1 --pretty=format:'%ae')
+        echo '
+        {
+          "ben.strutt1@nhs.net": "${{ github.secrets.BENS_PAT }}",
+          "laurence.smith@airelogic.com": "${{ github.secrets.LAURENCES_PAT }}"
+        }
+        ' | jq -r ."${USERNAME}"
