@@ -8,6 +8,9 @@ jobs:
     - name: Checkout Scripts
       uses: actions/checkout@v2
 
+    - name: Dump context
+      run: echo $GITHUB_CONTEXT | jq
+
     - name:
       run: |
         export USERNAME=$(git log -1 --pretty=format:'%ae')
