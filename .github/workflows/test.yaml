@@ -13,10 +13,9 @@ jobs:
 
     - name:
       run: |
-        export USERNAME=$(git log -1 --pretty=format:'%ae')
         echo '
         {
-          "ben.strutt1@nhs.net": "${{ github.secrets.BENS_PAT }}",
-          "laurence.smith@airelogic.com": "${{ github.secrets.LAURENCES_PAT }}"
+          "strutt": "${{ github.secrets.BENS_PAT }}",
+          "Sourceless": "${{ github.secrets.LAURENCES_PAT }}"
         }
-        ' | jq -r ."${USERNAME}"
+        ' | jq -r ."${{ github.actor }}"
