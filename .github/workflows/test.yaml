@@ -9,7 +9,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Dump context
-      run: echo $GITHUB_CONTEXT | jq
+      run: echo ${{ github.actor }}
 
     - name:
       run: |
