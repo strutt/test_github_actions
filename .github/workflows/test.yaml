@@ -12,13 +12,11 @@ jobs:
       run: echo ${{ github.actor }}
 
     - name: Get secrets
-      run: |
-        echo '
-        {
-          "strutt": "$BENS_PAT",
-          "Sourceless": "$LAURENCES_PAT"
-        }
-        ' | jq -r ."${{ github.actor }}" | wc -c
       env:
         BENS_PAT: ${{ secrets.BENS_PAT }}
         LAURENCES_PAT: ${{ secrets.LAURENCES_PAT }}
+      run: |
+        declare -A PATS
+        PATS[strutt]="$BENS_PAT"
+        PATS[Sourceless]="$LAURENCES_PAT"
+        echo ${PATS[${{ github.actor }}]} | wc -c
