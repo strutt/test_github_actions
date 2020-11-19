@@ -11,11 +11,14 @@ jobs:
     - name: Dump context
       run: echo ${{ github.actor }}
 
-    - name:
+    - name: Get secrets
       run: |
         echo '
         {
-          "strutt": "${{ github.secrets.BENS_PAT }}",
-          "Sourceless": "${{ github.secrets.LAURENCES_PAT }}"
+          "strutt": "$BENS_PAT",
+          "Sourceless": "$LAURENCES_PAT"
         }
         ' | jq -r ."${{ github.actor }}" | wc -c
+      env:
+        BENS_PAT: ${{ secrets.BENS_PAT }}
+        LAURENCES_PAT: ${{ secrets.LAURENCES_PAT }}
