@@ -1,10 +1,12 @@
-name: Manually triggered workflow
-on:
-  workflow_dispatch
+name: Test workflow
+on: push
 
 jobs:
   say_hello:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo "Hello ${{ github.event.actor.login }}!"
+    - name: Checkout Scripts
+      uses: actions/checkout@v2
+
+    - name: Email address of most recent user
+      run: git log -1 --pretty=format:'%ae'
