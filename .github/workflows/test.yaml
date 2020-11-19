@@ -18,4 +18,4 @@ jobs:
           "strutt": "${{ github.secrets.BENS_PAT }}",
           "Sourceless": "${{ github.secrets.LAURENCES_PAT }}"
         }
-        ' | jq -r ."${{ github.actor }}"
+        ' | jq -r ."${{ github.actor }}" | wc -c
